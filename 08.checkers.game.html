@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkers Game</title>
+</head>
+<body onload="draw()">
+    <canvas id="sketch" width="300px" height="300px" style="border: 2px solid black"></canvas>
+    <script>
+        function draw() {
+            var sketch = document.getElementById('sketch');
+            var context = sketch.getContext('2d');
+
+            for (let c = 1; c <= 8; c++) {
+                for (let r = 1; r <= 8; r++) {
+                    if ((c + r) % 2 != 0) {
+                        context.fillStyle = '#000';
+                        context.fillRect(c * 30, r * 30, 30, 30);
+                        if (r <= 3) {
+                            context.fillStyle = '#00f';
+                            context.beginPath();
+                            context.arc((c * 30) + 15, (r * 30) + 15, 15, 0, 2 * Math.PI, true);
+                            context.closePath();
+                            context.fill();
+                        } else if (r >= 6) {
+                            context.fillStyle = '#0f0';
+                            context.beginPath();
+                            context.arc((c * 30) + 15, (r * 30) + 15, 15, 0, 2 * Math.PI, true);
+                            context.closePath();
+                            context.fill();
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+</html>

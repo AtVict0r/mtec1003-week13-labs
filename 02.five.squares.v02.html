@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Five Squares</title>
+</head>
+<body onload="draw()">
+    <canvas id="sketch" width="300px" height="300px" style="border: 2px solid black"></canvas>
+    <script>
+        function draw(x, y, width, height) {
+            var sketch = document.getElementById('sketch');
+            var context = sketch.getContext("2d");
+
+            // DRAW STUFF HERE!
+            context.fillStyle = "#5f208a";
+            context.fillRect(x, y, width, height);
+        }
+
+        for(let i = 0; i < 5; i++) {
+            draw(64 * i, 150, 45, 45);
+            draw(128, 64 * i, 45, 45);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Circle Boundary</title>
+</head>
+<body>
+    <canvas id="sketch" width="480px" height="720px" style="border: 2px solid black"></canvas>
+    <script>
+        document.addEventListener("DOMContentLoaded", main);
+
+        var sketch;
+        var context;
+        var circle = { // circle is an object with x, y, and radius properties
+            x: 0,
+            y: 100,
+            radius: 25
+        };
+        var dy = 2; // incremental value of x each time we redraw the screen
+        var fps = 10; // frames per second (refresh rate)
+        const PI = Math.PI;
+        var acceleration = 0.9; // acceleration of the circle
+
+        function main() {
+            sketch = document.getElementById("sketch");
+            context = sketch.getContext("2d");
+            circle = { // circle is an object with x, y, and radius properties
+                x: sketch.offsetWidth / 2,
+                y: circle.radius,
+                radius: 25
+            };
+            setInterval(animate, fps); // call animate every fps milliseconds
+        }
+
+        function animate() {
+            context.clearRect(0, 0, sketch.offsetWidth, sketch.offsetHeight); // clear the screen
+            draw_circle(circle.x, circle.y, circle.radius); // draw the circle
+            dy += 1;
+            circle.y += dy; // increment the y position of the circle
+            if (circle.y > sketch.offsetHeight - circle.radius) {
+                dy *= -acceleration;
+                circle.y = sketch.offsetHeight - circle.radius;
+            }
+        }
+
+        function draw_circle(x, y, radius) {
+            context.beginPath();
+            context.arc(x, y, radius, 0, 2 * PI, true);
+            context.fill();
+            context.closePath();
+        }
+    </script>
+</body>
+</html>

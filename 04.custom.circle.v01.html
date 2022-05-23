@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Circle</title>
+</head>
+<body onload="draw()">
+    <canvas id="sketch" width="300px" height="300px" style="border: 2px solid black"></canvas>
+    <script>
+        function draw() {
+            // ask for a number
+            var myNumber = parseInt(prompt("Enter a radius greater than 0 but less than 300"), 10);
+
+            // check that the number is within range
+            while (myNumber < 0 && myNumber > 300) {
+                alert(String(myNumber) + " is not a radius greater than 0 but less than 300, try again!");
+                myNumber = parseInt(prompt("Enter a radius greater than 0 but less than 300"), 10);
+            }
+
+            // ask for a color
+            var myColor = prompt("Pick a color from the following: red, green, or blue");
+            myColor = myColor.toLowerCase();
+
+            // check that the color is valid
+            while (myColor != "red" && myColor != "green" && myColor != "blue") {
+                alert(String(myColor) + " is not in the list of valid colors, try again!");
+                myColor = prompt("Pick a color from the following: red, green, or blue");
+                myColor = myColor.toLowerCase();
+            }
+
+            // set color to hex value
+            if (myColor == "red") {
+                myColor = "#ff0000";
+            } else if (myColor == "green") {
+                myColor = "#00ff00";
+            } else if (myColor == "blue") {
+                myColor = "#0000ff";
+            }
+
+            // draw the circle
+            var canvas = document.getElementById("sketch");
+            var context = canvas.getContext("2d");
+            
+            context.fillStyle = myColor; // set the fill color
+            
+            // begin drawing the circle
+            context.beginPath();
+            context.arc(150, 150, myNumber, 0, 2 * Math.PI, true);
+            context.closePath();
+            context.fill();
+        }
+    </script>
+</body>
+</html>

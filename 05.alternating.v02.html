@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alternating</title>
+</head>
+<body onload="draw()">
+    <canvas id="sketch" width="800px" height="300px" style="border: 2px solid black"></canvas>
+    <script>
+        function draw() {
+            var myNumber = parseInt(prompt("How many shapes should I create? (Enter a number between 1 and 11)"), 10);
+
+            // check if the user entered a valid number
+            while (isNaN(myNumber) || myNumber < 1 || myNumber > 11) {
+                myNumber = parseInt(prompt("How many shapes should I create? (Enter a number between 1 and 11)"), 10);
+            }
+
+            // draw shapes
+            var canvas = document.getElementById("sketch");
+            var context = canvas.getContext("2d");
+
+            for (var i = 1; i <= myNumber; i++) {
+                if (i % 2 == 0) {
+                    context.fillStyle = "#00ff00";
+                    context.fillRect((70*i), 100, 50, 50);
+                } else {
+                    context.fillStyle = "#0000ff";
+                    context.beginPath();
+                    context.arc((70*i) + 25, 125, 25, 0, 2 * Math.PI, true);
+                    context.closePath();
+                    context.fill();
+                }
+            }
+        }
+    </script>
+</body>
+</html>
